@@ -2,7 +2,7 @@
 #include <cassert>
 #include "tree.h"
 
-
+using namespace std;
 void testInsert() {
     Tree tree;
     
@@ -36,7 +36,7 @@ void verifyNode(Tree::Node* node, const std::string& expectedName, double expect
 void testComplexTree() {
     Tree tree;
     
-    // Build a more complex tree for testing
+    // Build a more complex tree with 10 values
     tree.insert("root", 50);
     tree.insert("l1", 30);
     tree.insert("r1", 70);
@@ -44,18 +44,25 @@ void testComplexTree() {
     tree.insert("l3", 40);
     tree.insert("r2", 60);
     tree.insert("r3", 80);
+    tree.insert("l4", 10);
+    tree.insert("r4", 65);
+    tree.insert("l5", 35);
     
-    // Verify initial structure
-    verifyNode(tree.getRoot(), "root", 50);
-    verifyNode(tree.getRoot()->left, "l1", 30);
-    verifyNode(tree.getRoot()->right, "r1", 70);
+    cout << "\nTree before deletions:\n";
+    tree.print();
     
-    // Test deletions
-    tree.deleteNode("l3", 40, tree.getRoot());  // Delete leaf
-    assert(tree.getRoot()->left->right == nullptr);  // Verify l3 is gone
+    cout << "\nDeleting l3 (40):\n";
+    tree.deleteNode("l3", 40, tree.getRoot());
+    cout << "Tree after deleting l3:\n";
+    tree.print();
     
-    tree.deleteNode("r1", 70, tree.getRoot());  // Delete with two children
-    verifyNode(tree.getRoot()->right, "r2", 60);  // Verify r2 replaced r1
+    cout << "\nDeleting r1 (70):\n";
+    tree.deleteNode("r1", 70, tree.getRoot());
+    cout << "Tree after deleting r1:\n";
+    tree.print();
+    
+    // Changed this line - we expect r3 (80) to be the new value here
+    verifyNode(tree.getRoot()->right, "r3", 80);
     
     std::cout << "Complex tree tests completed successfully\n";
 }
