@@ -6,8 +6,7 @@
 
 #define TREE_H
 
-class Tree
-{
+class Tree{
     public:
         struct Node {
             std::string name;
@@ -31,6 +30,7 @@ class Tree
         void deleteTreeHelper(Node* node);
     private:
         Node* root;
+        
 
 
 };

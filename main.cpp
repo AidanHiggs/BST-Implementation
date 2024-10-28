@@ -2,6 +2,7 @@
 #include <cassert>
 #include "tree.h"
 
+
 void testInsert() {
     Tree tree;
     
@@ -57,4 +58,16 @@ void testComplexTree() {
     verifyNode(tree.getRoot()->right, "r2", 60);  // Verify r2 replaced r1
     
     std::cout << "Complex tree tests completed successfully\n";
+}
+int main() {
+    std::cout << "Starting BST tests...\n\n";
+    
+    testInsert();
+    std::cout << "-----------------\n";
+    
+    testComplexTree();
+    std::cout << "-----------------\n";
+    
+    std::cout << "All tests completed!\n";
+    return 0;
 }

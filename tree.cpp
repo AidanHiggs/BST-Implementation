@@ -148,11 +148,13 @@ void Tree::deleteNode(std::string name, double data, Node* node) {
 }
 
 // Proper destructor implementation
-void deleteTreeHelper(Tree::Node* node) {
+void Tree::deleteTreeHelper(Tree::Node* node) {
     if (node == nullptr) return;
     
     deleteTreeHelper(node->left);   // Delete left subtree
     deleteTreeHelper(node->right);  // Delete right subtree
     delete node;                    // Delete current node
 }
- 
+Tree::~Tree() {
+    deleteTreeHelper(root);
+}
